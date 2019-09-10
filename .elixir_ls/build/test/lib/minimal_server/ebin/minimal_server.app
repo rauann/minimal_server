@@ -1,0 +1,10 @@
+{application,minimal_server,
+             [{applications,[kernel,stdlib,elixir,logger,poison,plug_cowboy]},
+              {description,"minimal_server"},
+              {modules,['Elixir.MinimalServer',
+                        'Elixir.MinimalServer.Application',
+                        'Elixir.MinimalServer.EndPoint',
+                        'Elixir.MinimalServer.Router']},
+              {registered,[]},
+              {vsn,"0.1.0"},
+              {mod,{'Elixir.MinimalServer.Application',[]}}]}.
