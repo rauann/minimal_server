@@ -4,7 +4,8 @@
               {modules,['Elixir.MinimalServer',
                         'Elixir.MinimalServer.Application',
                         'Elixir.MinimalServer.EndPoint',
-                        'Elixir.MinimalServer.Router']},
+                        'Elixir.MinimalServer.Registration.User',
+                        'Elixir.MinimalServer.Router.Api']},
               {registered,[]},
               {vsn,"0.1.0"},
               {mod,{'Elixir.MinimalServer.Application',[]}}]}.

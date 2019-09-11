@@ -11,4 +11,12 @@ defmodule MinimalServer.EndPointTest do
     assert conn.status == 404
     assert conn.resp_body == "oops... nothing here!"
   end
+
+  test "GET /health" do
+    conn = conn(:get, "/health")
+    conn = MinimalServer.EndPoint.call(conn, @opts)
+
+    assert conn.status == 200
+    assert Poison.decode!(conn.resp_body) == %{"message" => "I'm alive!"}
+  end
 end
