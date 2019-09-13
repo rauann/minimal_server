@@ -20,6 +20,23 @@ defmodule MinimalServer.Router.ApiTest do
     conn = conn(:post, "/api/users", params)
     conn = MinimalServer.EndPoint.call(conn, @opts)
 
-    IO.inspect(Poison.decode!(conn.resp_body))
+    assert conn.status == 200
+    assert Poison.decode!(conn.resp_body) == params
+  end
+
+  test "when invalid params" do
+    params = %{
+      user: %{
+        username: "Jacob",
+        email: "jake@jake.jake",
+        password: ""
+      }
+    }
+
+    conn = conn(:post, "/api/users", params)
+    conn = MinimalServer.EndPoint.call(conn, @opts)
+
+    assert conn.status == 422
+    assert Poison.decode!(conn.resp_body) == %{"error" => "Invalid params!"}
   end
 end
