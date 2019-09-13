@@ -2,9 +2,13 @@ defmodule MinimalServer.Router.ApiTest do
   use ExUnit.Case
   use Plug.Test
 
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(MinimalServer.Repo)
+  end
+
   @opts MinimalServer.EndPoint.init([])
 
-  test "" do
+  test "when valid params" do
     params = %{
       user: %{
         username: "Jacob",

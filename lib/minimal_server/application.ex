@@ -11,7 +11,8 @@ defmodule MinimalServer.Application do
         scheme: :http,
         plug: MinimalServer.EndPoint,
         options: [port: Application.get_env(:minimal_server, :port)]
-      )
+      ),
+      {MinimalServer.Repo, []}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
