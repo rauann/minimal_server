@@ -23,10 +23,12 @@ defmodule MinimalServer.MixProject do
   defp deps do
     [
       {:plug_cowboy, "~> 2.0"},
-      {:poison, "~> 3.1"},
+      # {:poison, "~> 3.1"},
       {:ecto_sql, "~> 3.0"},
       {:postgrex, "~> 0.15.0"},
-      {:mix_test_watch, "~> 0.8", only: :dev, runtime: false}
+      {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
+      # {:ja_serializer, "~> 0.15.0"},
+      {:jason, "~> 1.1"}
     ]
   end
 end

@@ -17,6 +17,6 @@ defmodule MinimalServer.EndPointTest do
     conn = MinimalServer.EndPoint.call(conn, @opts)
 
     assert conn.status == 200
-    assert Poison.decode!(conn.resp_body) == %{"message" => "I'm alive!"}
+    assert Jason.decode!(conn.resp_body) == %{"message" => "I'm alive!"}
   end
 end

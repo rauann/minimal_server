@@ -7,7 +7,7 @@ defmodule MinimalServer.Router.Api do
   plug(:dispatch)
 
   post "/users" do
-    {status, body} = RegistrationController.new(conn.body_params)
+    {status, body} = RegistrationController.create(conn.body_params)
 
     conn
     |> put_resp_content_type("application/json")

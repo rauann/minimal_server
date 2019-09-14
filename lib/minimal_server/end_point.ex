@@ -7,7 +7,7 @@ defmodule MinimalServer.EndPoint do
   plug(Plug.Parsers,
     parsers: [:json],
     pass: ["application/json"],
-    json_decoder: Poison
+    json_decoder: Jason
   )
 
   plug(:dispatch)
@@ -17,7 +17,7 @@ defmodule MinimalServer.EndPoint do
   get "/health" do
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, Poison.encode!(%{message: "I'm alive!"}))
+    |> send_resp(200, Jason.encode!(%{message: "I'm alive!"}))
   end
 
   match _ do

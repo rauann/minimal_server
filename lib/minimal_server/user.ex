@@ -3,6 +3,8 @@ defmodule MinimalServer.User do
 
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, except: [:__meta__, :id]}
+
   schema "users" do
     field(:email, :string)
     field(:password, :string)
