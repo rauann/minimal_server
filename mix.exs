@@ -27,6 +27,7 @@ defmodule MinimalServer.MixProject do
       {:ecto_sql, "~> 3.0"},
       {:postgrex, "~> 0.15.0"},
       {:mix_test_watch, "~> 0.8", only: :dev, runtime: false},
+      {:ex_unit_notifier, "~> 0.1", only: :test},
       # {:ja_serializer, "~> 0.15.0"},
       {:jason, "~> 1.1"}
     ]

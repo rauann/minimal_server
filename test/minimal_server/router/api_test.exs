@@ -10,10 +10,10 @@ defmodule MinimalServer.Router.ApiTest do
 
   test "when valid params" do
     params = %{
-      user: %{
-        username: "Jacob",
-        email: "jake@jake.jake",
-        password: "jakejake"
+      "user" => %{
+        "username" => "Jacob",
+        "email" => "jake@jake.jake",
+        "password" => "jakejake"
       }
     }
 
@@ -21,14 +21,14 @@ defmodule MinimalServer.Router.ApiTest do
     conn = MinimalServer.EndPoint.call(conn, @opts)
 
     assert conn.status == 200
-    assert conn.resp_body == Jason.encode!(params)
+    assert Jason.decode!(conn.resp_body) == params
   end
 
   test "when invalid params" do
     params = %{
-      username: "Jacob",
-      email: "jake@jake.jake",
-      password: "jakejake"
+      "username" => "Jacob",
+      "email" => "jake@jake.jake",
+      "password" => "jakejake"
     }
 
     conn = conn(:post, "/api/users", params)
@@ -51,6 +51,6 @@ defmodule MinimalServer.Router.ApiTest do
     conn = MinimalServer.EndPoint.call(conn, @opts)
 
     assert conn.status == 422
-    assert Jason.decode!(conn.resp_body) == %{"error" => "Invalid user!"}
+    assert Jason.decode!(conn.resp_body) == %{"error" => %{"password" => ["can't be blank"]}}
   end
 end
