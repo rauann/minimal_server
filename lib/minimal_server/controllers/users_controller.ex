@@ -1,4 +1,6 @@
 defmodule MinimalServer.Controllers.UsersController do
+  use Helpers.RenderHelper
+
   alias MinimalServer.Contexts.UserRegistration
 
   def create(%{"user" => %{}} = params) do
@@ -15,27 +17,5 @@ defmodule MinimalServer.Controllers.UsersController do
 
   def create(_) do
     {422, render(%{error: "Invalid params!"})}
-  end
-
-  defp render(%{error: %Ecto.Changeset{} = changeset}) do
-    %{
-      error:
-        Ecto.Changeset.traverse_errors(changeset, fn {msg, opts} ->
-          Enum.reduce(opts, msg, fn {key, value}, acc ->
-            String.replace(acc, "%{#{key}}", to_string(value))
-          end)
-        end)
-    }
-    |> Jason.encode!()
-  end
-
-  defp render(%{error: _} = error) do
-    error
-    |> Jason.encode!()
-  end
-
-  defp render(user) do
-    user
-    |> Jason.encode!()
   end
 end
